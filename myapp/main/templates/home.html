@@ -15,7 +15,11 @@
             <div class="card-body">
               <h5 class="card-title">{{i.folder_name}}</h5>
               <a href="{% url 'folder' i.id %}" class="btn btn-outline-primary"
-                >Go Folder
+                >Go to Folder
+              </a>
+
+              <a href="{% url 'delete_folder' i.id %}" class="btn btn-outline-danger"
+                >Delete
               </a>
             </div>
           </div>
