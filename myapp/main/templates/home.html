@@ -1,10 +1,11 @@
 {% extends 'base.html' %} 
-{% block title %}Home{% endblock title %}
+{% block title %}Home{% endblock title %} 
+
+
+
 {% block body %}
 
-
-
-    <div style="display: flex; padding: 10px 20px; justify-content: space-between">
+<div style="display: flex; padding: 10px 20px; justify-content: space-between">
   <div class="">
     <div class="container py-3">
       <div class="row">
@@ -18,7 +19,9 @@
                 >Go to Folder
               </a>
 
-              <a href="{% url 'delete_folder' i.id %}" class="btn btn-outline-danger"
+              <a
+                href="{% url 'delete_folder' i.id %}"
+                class="btn btn-outline-danger"
                 >Delete
               </a>
             </div>
@@ -29,7 +32,7 @@
       </div>
     </div>
   </div>
-  
+
   <div class="">
     <!-- Button trigger modal -->
     <button
@@ -47,8 +50,7 @@
       id="exampleModal"
       tabindex="-1"
       aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
+      aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -62,7 +64,7 @@
           </div>
           <div class="modal-body">
             <form action="{% url 'addfolder' %}" method="POST">
-            {% csrf_token %}
+              {% csrf_token %}
               <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label"
                   >Folder Name</label
@@ -73,7 +75,7 @@
                   id="exampleFormControlInput1"
                   name="folder_name"
                 />
-                
+
                 <button class="btn btn-outline-success my-3">Create</button>
               </div>
             </form>
@@ -83,8 +85,4 @@
     </div>
   </div>
 </div>
-<script>
-  // Hide messages after 5 seconds
-  
-</script>
-{% endblock body %}
+{% endblock %}

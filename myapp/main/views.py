@@ -111,7 +111,7 @@ def index(request):
         context = {'folder':folder}
         return render(request,'home.html',context)
     else:
-        return redirect('register')
+        return redirect('login')
     
 
 

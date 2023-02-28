@@ -8,10 +8,59 @@
         {% for i in files %}
         <div class="col-sm">
           <div class="card" style="width: 18rem">
+            <img
+              src="{{i.file.url}}"
+              class="card-img-top"
+              alt="image of {{i.filetitle}}"
+            />
             <div class="card-body">
               <h5 class="card-title">{{i.filetitle}}</h5>
-              <a href="{{i.file.url}}" download="{{i.file}}" class="btn btn-outline-primary">Download File </a>
-              <a href="{% url 'delete_file' i.folder.id i.id %}" class="btn btn-outline-danger">Delete</a>
+              {% comment %}
+              <a
+                href="{{i.file.url}}"
+                download="{{i.file}}"
+                class="btn btn-outline-primary"
+                >Download File
+              </a>
+              {% endcomment %} {% comment %}
+              <a
+                href="{% url 'delete_file' i.folder.id i.id %}"
+                class="btn btn-outline-danger"
+                >Delete</a
+              >
+              {% endcomment %}
+              <div class="dropdown">
+                <button
+                  class="btn btn-secondary dropdown-toggle"
+                  type="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Select
+                </button>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a
+                      href="{{i.file.url}}"
+                      download="{{i.file}}"
+                      class="dropdown-item"
+                      >Download</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="{% url 'delete_file' i.folder.id i.id %}"
+                      class="dropdown-item"
+                      >Delete</a
+                    >
+                  </li>
+                  {% comment %}
+                  <li>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                  </li>
+                  {% endcomment %}
+                </ul>
+              </div>
             </div>
           </div>
         </div>
@@ -27,7 +76,7 @@
       class="btn btn-outline-primary"
       data-bs-toggle="modal"
       data-bs-target="#exampleModal"
-    >
+>
       Upload File
     </button>
 
@@ -37,8 +86,7 @@
       id="exampleModal"
       tabindex="-1"
       aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
+      aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -51,12 +99,18 @@
             ></button>
           </div>
           <div class="modal-body">
-            <form action="{% url 'folder' folderid %}" method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
+            <form
+              action="{% url 'folder' folderid %}"
+              method="POST"
+              enctype="multipart/form-data"
+            >
+              {% csrf_token %}
               <div class="mb-3">
+                {% comment %}
                 <label for="exampleFormControlInput1" class="form-label"
-                  >File Name</label
+                  >Upload</label
                 >
+                {% endcomment %}
                 <input
                   type="file"
                   class="form-control"
@@ -72,9 +126,7 @@
                   id="exampleFormControlInput1"
                   name="filetitle"
                 />
-                <button class="btn btn-outline-success my-3">
-                  Upload File
-                </button>
+                <button class="btn btn-outline-success my-3">Upload</button>
               </div>
             </form>
           </div>
@@ -83,5 +135,10 @@
     </div>
   </div>
 </div>
+
+
+<!-- ----------for folders---------------------- -->
+
+
 
 {% endblock body %}
