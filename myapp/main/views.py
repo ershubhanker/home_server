@@ -60,6 +60,7 @@ def logout_page(request):
 
 def folder(request,folderid):
     if request.user.is_authenticated:
+        subFolder = Folder.objects.filter(id=folderid)
         folder_user = Folder.objects.get(id=folderid)
         files = FileUploadModel.objects.filter(folder=folder_user)
         context = {'folderid':folderid,'files':files}
@@ -69,27 +70,29 @@ def folder(request,folderid):
             fileadd = FileUploadModel.objects.create(filetitle=file_title,file=file_user,folder=folder_user)
         return render(request,'folder.html',context)
     else:
-        return redirect('register')
-    # if request.user.is_authenticated:
-    #     folder_user = Folder.objects.get(id=folderid)
-    #     files = FileUploadModel.objects.filter(folder=folder_user)
-    #     context = {'folderid':folderid,'files':files}
-    #     if request.method == 'POST':
-    #         file_id = request.POST.get('fileid')
-    #         if file_id:
-    #             file = FileUploadModel.objects.get(id=file_id)
-    #             if file.folder.folder_user == request.user:
-    #                 file.delete()
-    #                 messages.success(request, 'File deleted successfully!')
-    #             else:
-    #                 messages.error(request, 'You do not have permission to delete this file.')
-    #         else:
-    #             file_user = request.FILES.get('file')
-    #             file_title = request.POST.get('filetitle')
-    #             fileadd = FileUploadModel.objects.create(filetitle=file_title,file=file_user,folder=folder_user)
-    #     return render(request,'folder.html',context)
-    # else:
-    #     return redirect('register')
+        return redirect('login')
+    
+
+def InsideFolder(request,folderid):
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+        
+            folder_name = request.POST['folder_name']
+            parent = Folder.objects.get(id=folderid)
+        
+            folder = Folder.objects.create(parent=parent,folder_name=folder_name)
+
+        
+            if folder:
+            
+                return redirect('insidefolder')
+            else:
+            # messages.error(request,'oops! folder not created')
+                return redirect('index')
+
+
+
+
 
 def addFolder(request):
     if request.method == 'POST':
