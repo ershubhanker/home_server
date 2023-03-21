@@ -9,7 +9,7 @@ urlpatterns = [
     path('logout/',views.logout_page, name='logout'),
     path('addFolder/',views.addFolder, name='addfolder'),
     path("folder/<int:folderid>/",views.folder, name='folder'),
-    path("folder/<int:folderid>/",views.InsideFolder, name='insidefolder'),
+    # path("folder/<int:folderid>/",views.InsideFolder, name='insidefolder'),
 
     path('delete_file/<int:folderid>/<int:fileid>/', views.delete_file, name='delete_file'),
     path('delete_folder/<int:folderid>/', views.delete_folder, name='delete_folder'),

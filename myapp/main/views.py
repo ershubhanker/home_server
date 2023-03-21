@@ -73,22 +73,22 @@ def folder(request,folderid):
         return redirect('login')
     
 
-def InsideFolder(request,folderid):
-    if request.user.is_authenticated:
-        if request.method == 'POST':
+# def InsideFolder(request,folderid):
+#     if request.user.is_authenticated:
+#         if request.method == 'POST':
         
-            folder_name = request.POST['folder_name']
-            parent = Folder.objects.get(id=folderid)
+#             folder_name = request.POST['folder_name']
+#             parent = Folder.objects.get(id=folderid)
         
-            folder = Folder.objects.create(parent=parent,folder_name=folder_name)
+#             folder = Folder.objects.create(parent=parent,folder_name=folder_name)
 
         
-            if folder:
+#             if folder:
             
-                return redirect('insidefolder')
-            else:
-            # messages.error(request,'oops! folder not created')
-                return redirect('index')
+#                 return redirect('insidefolder')
+#             else:
+#             # messages.error(request,'oops! folder not created')
+#                 return redirect('index')
 
 
 
